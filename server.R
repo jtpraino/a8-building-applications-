@@ -18,14 +18,14 @@ shinyServer(function(input, output) {
   # Render Histogram
   output$hist <- renderPlotly({
     build_hist(flower_data, 
-                input$hist_Species, 
-                input$hist_trait)
+               input$hist_Species, 
+               input$hist_trait)
   })
   # Render Scatterplot
   output$scatter <- renderPlotly({
     build_scatter(flower_data,
-                input$scatter_Species,
-                input$scatter_trait1,
-                input$scatter_trait2)
+                  input$scatter_Species,
+                  input$scatter_trait1,
+                  input$scatter_trait2)
   })
 })
