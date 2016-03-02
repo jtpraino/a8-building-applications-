@@ -49,11 +49,17 @@ build_scatter <- function(data, species, trait_1, trait_2) {
          ) %>% return()
 }
 
+# Function used to create a boxplot showing the relation of a single trait among all species
 build_boxplot <- function(data, trait) {
+  # Isolate data relating to passed trait
   df <- data %>% select_("Species", trait)
+  # Isolate data relating to setosa species
   setosa <- grab_trait_per_species(df, "setosa", trait)
+  # Isolate data relating to versicolor species
   versicolor <- grab_trait_per_species(df, "versicolor", trait)
+  # Isolate data relating to verginica species
   virginica <- grab_trait_per_species(df, "virginica", trait)
+  # Generate a boxplot
   plot_ly(y = setosa[[1]],
           name = "setsosa",
           type = 'box',
@@ -71,6 +77,7 @@ build_boxplot <- function(data, trait) {
            xaxis = list(title = "Species")) %>% return()
 }
 
+# A function to isolate data relating specific trait and species for use in build_boxplot
 grab_trait_per_species <- function(data, species, trait) {
   temp <- data %>% filter(Species == species) %>% select_(trait) %>% return()
 }

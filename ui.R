@@ -64,11 +64,13 @@ shinyUI(navbarPage('Type of Graph',
       )
     )
   ),
+  # Controls
   tabPanel("Boxplot",
       titlePanel("Iris Boxplot"),
       # Controls
       sidebarLayout(
        sidebarPanel(
+         # Choose trait
          selectInput("box_trait",
                       label = "Trait:",
                       choices = list("Sepal Length" = "Sepal.Length", "Sepal Width" = "Sepal.Width",
