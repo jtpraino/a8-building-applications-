@@ -63,5 +63,22 @@ shinyUI(navbarPage('Type of Graph',
         plotlyOutput('scatter')
       )
     )
+  ),
+  tabPanel("Boxplot",
+      titlePanel("Iris Boxplot"),
+      # Controls
+      sidebarLayout(
+       sidebarPanel(
+         selectInput("box_trait",
+                      label = "Trait:",
+                      choices = list("Sepal Length" = "Sepal.Length", "Sepal Width" = "Sepal.Width",
+                                     "Petal Length" = "Petal.Length", "Petal Width" = "Petal.Width"),
+                      selected = "Sepal.Length")
+       ),
+       # Render Boxplot
+       mainPanel(
+         plotlyOutput('box')
+       )
+     )
   )
 ))

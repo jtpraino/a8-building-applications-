@@ -2,8 +2,8 @@ name: a8-building-applications-
 account: jtpraino
 server: shinyapps.io
 appId: 86341
-bundleId: 384084
+bundleId: 385196
 url: https://jtpraino.shinyapps.io/a8-building-applications-/
-when: 1456815012.46369
+when: 1456899566.02388
 asMultiple: FALSE
 asStatic: FALSE

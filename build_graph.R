@@ -9,7 +9,8 @@
 library(dplyr)
 library(plotly)
 library(datasets)
-
+library(ggplot2)
+temp <- iris
 # Function used to create a histogram of a particular trait of a particular species of flower
 build_hist <- function(data, species, trait) {
   # Isolate data relating to passed specie and trait variables
@@ -46,4 +47,30 @@ build_scatter <- function(data, species, trait_1, trait_2) {
            yaxis = list(range = c(0, ymax + 1.5), title = paste(trait_2,"(cm)")),
            xaxis = list(range = c(0, xmax + 1.5), title = paste(trait_1,"(cm)"))
          ) %>% return()
+}
+
+build_boxplot <- function(data, trait) {
+  df <- data %>% select_("Species", trait)
+  setosa <- grab_trait_per_species(df, "setosa", trait)
+  versicolor <- grab_trait_per_species(df, "versicolor", trait)
+  virginica <- grab_trait_per_species(df, "virginica", trait)
+  plot_ly(y = setosa[[1]],
+          name = "setsosa",
+          type = 'box',
+          boxpoints = 'all') %>% 
+    add_trace(y = versicolor[[1]],
+              name = "versicolor",
+              type = 'box',
+              boxpoints = 'all') %>% 
+    add_trace(y = virginica[[1]],
+              name = "virginica",
+              type = 'box',
+              boxpoints = 'all') %>% 
+    layout(title = paste("Variation of", trait, "in each species"),
+           yaxis = list(title = trait),
+           xaxis = list(title = "Species")) %>% return()
+}
+
+grab_trait_per_species <- function(data, species, trait) {
+  temp <- data %>% filter(Species == species) %>% select_(trait) %>% return()
 }

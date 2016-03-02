@@ -28,4 +28,9 @@ shinyServer(function(input, output) {
                   input$scatter_trait1,
                   input$scatter_trait2)
   })
+  # Render Boxplot
+  output$box <- renderPlotly({
+    build_boxplot(flower_data,
+                  input$box_trait)
+  })
 })
